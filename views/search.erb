@@ -5,7 +5,8 @@
   <button type="submit">Search</button>
 </form>
 
-<% if @search_results.empty?%>
+<% if @query.nil? %>
+<% elsif @search_results.empty?%>
   <p>Sorry, no matches were found.</p>
 <% else %>
   <h2 class="content-subhead">Results for <%= params[:query] %></h2>

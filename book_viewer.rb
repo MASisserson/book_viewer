@@ -1,6 +1,6 @@
 require "tilt/erubis"
 require "sinatra"
-require "sinatra/reloader"
+require "sinatra/reloader" if development?
 
 helpers do
   def wrap_paragraphs(array_of_paragraphs)
@@ -77,7 +77,8 @@ get "/chapters/:number" do
 end
 
 get "/search" do
-  @search_results = find_instances_of(params[:query])
+  @query = params[:query]
+  @search_results = find_instances_of(@query)
   erb :search
 end
 
